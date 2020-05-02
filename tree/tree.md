@@ -94,3 +94,107 @@ def addNodeChild(node, value)
   end
 end
 ```
+
+## 3. Tree Traversal methods 
+Traversing a tree is important part.Unlike linear data strcutrues like array we need a root node to traverse a tree. Generally there are 2 baic approches to traverse a tree
+
+ - A) Breath-first-traversal
+ - B) Depth first traversal
+
+Further Depth first traveresal is divided into 3 parts
+- a) in-order-traversal
+- b) pre-order-traversal
+- c) post-order-traversal
+Although algorith imlementation is almost similar of  above traversal methods
+
+## 3.1 Breath first traversal
+In this method a tree, traversal started from root, traverse each level and then go to next level .
+Consider a tree
+```js
+        xyz company              -> Level-0
+        /         \
+      manager1    manger2        -> Level-1
+      /      \    /     \  
+     e1      e2  e3     e4       -> Leve-2
+```
+traversal sequence using breath first approch would be 
+```xyz company->manger1->manager2->e1->e2->e3->e4```
+Now lets look at ruby imlementation of breath first traversal approch
+### Ruby implementation of Breath first traversal
+
+```ruby
+def breath_first_traverse
+  root = getRoot
+  queue = []
+  queue << root
+  while queue.length > 0
+    puts queue[0].name
+    node = queue.shift # pop out from begining
+    if node.leftChild
+      queue << node.leftChild
+    end
+    
+    if node.rightChild
+      queue << node.rightChild
+    end
+  end
+end
+```
+In above code snippet we intially enqueue root node. After analaying root node we dequeue root node and enques its child node if they are not nil and reapeat till queue.length > 0 .
+
+
+## 3.2 Depth First Traversal
+There are 3 types of depth first traversal approch we can use to traverse a tree
+- In order
+- pre order
+- post order
+
+###  In-order traversal 
+In this approch we traverse left subtree and then right sub tree .
+Consider following tree :
+```js
+        xyz company              -> Level-0
+        /         \
+      manager1    manger2        -> Level-1
+      /      \    /     \  
+     e1      e2  e3     e4       -> Leve-2
+```
+Then traversing using in-order approch will result in following sequence ``` e1->manager1->e2->e3->manager2->e4```.
+### Algorithm for in-order traversal
+We will use recursive approch for in-order traversal
+```ruby
+def in_order_traverse node
+  return if node == nil
+  in_order_traverse node.leftChild
+  puts node.name
+  in_order_traverse node.rightChild
+end
+```
+* Output
+``` e1->manager1->e2-> e3->manager2->e4```
+
+### Algorithm for pre-order traversal
+```ruby
+  def pre_order_traversal
+    return if node == nil
+    
+    puts node.name
+    pre_order_traversal node.leftChild
+    pre_order_traversal node.rightChild
+  end
+```
+* Output 
+``` xyz company->manager1->e1->e2->manager2->e3->e4```
+
+### Alogithm for post-order traversal
+```ruby
+  def post_order_traverse
+     return if node == nil
+     post_order_traversal node.leftChild
+     post_order_traversal node.rightChild
+     puts node.name
+  end
+```
+* Output
+``` e1->e2->manager1->e3->e4->manager2-> xyz company```
+
