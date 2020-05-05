@@ -198,3 +198,39 @@ end
 * Output
 ``` e1->e2->manager1->e3->e4->manager2-> xyz company```
 
+# 4. Inserting And Searching Node Into A Tree
+So far we had constructed our tree by manually creating nodes , remember `addNodeChild` method to which we had to pass parent node and name of child node . 
+But now we will insert nodes into a tree dynammically . Using `insert` method we first search for the parent node and then add child to it .To find node we will use `findNodeByName` method which will return node instance .
+Here is the ruby implementation of insertion and searching .
+### Algorithm for insertion in Binary tree
+```ruby
+def insert parent, name
+  node = findNodeByName(parent)
+  if node
+    addNodeChild(node, name)
+  else
+    puts "NO node found"
+  end
+end
+```
+Here is algorithm to find node using its name. Remember that we already learned about variaous tree traversal approches. You can use any approch to traverse a tree and find node.Here we will be using `breath first traversal` approch.
+```ruby
+def findNodeByName name
+  queue = [] << getRoot
+  while queue.length > 0
+    node = queue.shift # dequeue
+    if node.name == name
+      return node
+    else
+      if node.leftChild
+        queue << node.leftChild # enqueue
+      end
+      
+      if node.rightChild
+        queue << node.rightChild #enqueue
+      end
+    end
+  end
+  return nil 
+end
+```
