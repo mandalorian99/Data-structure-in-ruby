@@ -6,7 +6,8 @@
 3. creating a tree statically
 4. inserting node into tree
 5. traversing tree
-6. learn all algo to traverse a treed
+6. learn all algo to traverse a tree
+7. Implementation of Binary search tree
 
 # 1. Implementation of Binary tree
 A Binary tree node can have atmost to child nodes. Each node consist of reference of its right child , left child and value.This value could be anything from number, string to a obj.We can visualize a node of a binary tree as a object below .
@@ -234,3 +235,23 @@ def findNodeByName name
   return nil 
 end
 ```
+
+# 5. Binary Search Tree 
+Binary search is a type of tree which have following properties
+ - The left sub tree have values less than or equal to its parent node
+ - The right sub tree have values greater than its parent node 
+
+Example:Here is a binary tree looks like 
+```ruby
+                   30
+                  /  \
+                20    40
+               / \    / \
+              10 25  35  45 
+```
+### 5.1 Basic operations
+ Following are the basic operation of a tree
+   - Searching 
+   - Insertion
+   - Deletion
+   - Traversal
